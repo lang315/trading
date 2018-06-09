@@ -5,6 +5,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/flosch/pongo2"
 	"github.com/labstack/echo/middleware"
+	"projects/trading/models"
 )
 
 type LangRender struct {
@@ -18,16 +19,27 @@ func (l *LangRender) Render(w io.Writer, name string, data interface{}, c echo.C
 
 	return t.ExecuteWriter(data.(pongo2.Context), w)
 }
-func main()  {
+func main() {
 	app := echo.New()
 	app.Use(middleware.Recover())
 	app.Use(middleware.Gzip())
-	app.Static("/", "static")
+	app.Static("/", "delivery")
 	app.Renderer = &LangRender{}
-	app.GET("/", func(c echo.Context) error {
-		return c.Render(200, "view/index", pongo2.Context{
+	app.GET("/", func(context echo.Context) error {
+		return context.Render(200, "delivery/view/index", pongo2.Context{
 
 		})
+	})
+
+	app.POST("/sign-up", func(context echo.Context) error {
+		u := &models.User{}
+		println("Done")
+		if err := context.Bind(u); err != nil {
+			println(err.Error())
+			return err
+		}
+		println("OK")
+		return context.JSON(200, u)
 	})
 
 	//app.GET("/login", func(c echo.Context) error {
@@ -44,4 +56,3 @@ func main()  {
 
 	app.Start(":8000")
 }
-
