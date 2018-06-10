@@ -4,12 +4,12 @@ import "github.com/gopherjs/jquery"
 
 func main() {
 
-	HandleSignUp()
 	ActiveNavbarMenu()
 	ActiveModalSignIn()
 	ActiveModalSignUp()
 	CloseModalSignIn()
 	CloseModalSignUp()
+	HandleSignUp()
 }
 
 func ActiveNavbarMenu()  {
