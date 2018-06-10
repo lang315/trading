@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Trade</title>
-    <link rel="stylesheet" href="/css/bulma.min.css">
-    <link rel="stylesheet" href="/css/fontawesome-all.css">
-    <script src="/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome-all.css">
+    <script src="static/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class="navbar is-dark">
@@ -228,12 +228,16 @@
         </header>
         <section class="modal-card-body">
             <form method="post" id="form-sign-up">
-                <div style="display: none" id="not-match-pass" class="notification is-danger">
+                <div  id="not-match-pass" class="notification is-danger">
                     <p>Password does not match the confirm password.</p>
                 </div>
 
-                <div style="display: none" id="length-pass" class="notification is-danger">
+                <div id="length-pass" class="notification is-danger">
                     <p>Length password is more than 6 characters.</p>
+                </div>
+
+                <div style="display: none" id="email-is-already" class="notification is-danger">
+                    <p>Email is already in use.</p>
                 </div>
 
                 <div class="field">
@@ -319,6 +323,6 @@
 </div>
 
 
-<script src="/js/app.min.js"></script>
+<script src="static/js/app.min.js"></script>
 </body>
 </html>
