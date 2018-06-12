@@ -8,6 +8,7 @@ import (
 	"projects/trading/models"
 	"projects/trading/repository"
 	"github.com/go-pg/pg"
+	"projects/trading/usecase"
 )
 
 type LangRender struct {
@@ -46,19 +47,28 @@ func main() {
 			println(err.Error())
 			return err
 		}
+
+		u.Password, _ = usecase.HashPassword(u.Password)
+		println(u.Password)
 		var user repository.UserRepository
-		if user.IsAlreadyAccount(db, u) {
-			println("IsAlreadyAccount")
-			resStr:= map[string]string{
-				"Success":"false",
-				"Status" : "Email is already in use",
+		user.User = u
+
+		if user.IsAlreadyAccount(db) {
+			resStr := map[string]string{
+				"Success": "false",
+				"Status":  "Email is already in use",
 			}
 			return context.JSON(200, resStr)
 		}
-		user.SignUpAccount(db, u)
-		return context.JSON(200, u)
-	})
 
+		user.SignUpAccount(db)
+		resStr := map[string]string{
+			"Success": "true",
+			"Status":  "OK",
+			"Name":    u.Fullname,
+		}
+		return context.JSON(200, resStr)
+	})
 
 	app.Start(":8000")
 }
