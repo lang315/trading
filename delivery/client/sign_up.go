@@ -28,6 +28,8 @@ func HandleSignUp() {
 		posting.Done(func(data *js.Object) {
 			if data.Get("Success").String() == "false" {
 				handlePostingErr(data)
+			} else {
+				CloseModalSignUp()
 			}
 		})
 
