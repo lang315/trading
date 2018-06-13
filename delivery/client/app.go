@@ -3,13 +3,10 @@ package main
 import "github.com/gopherjs/jquery"
 
 func main() {
-
 	ActiveNavbarMenu()
-	ActiveModalSignIn()
-	ActiveModalSignUp()
-	CloseModalSignIn()
-	CloseModalSignUp()
-	HandleSignUp()
+	SignUp()
+	SignIn()
+	HanldeOrderBuy()
 }
 
 func ActiveNavbarMenu()  {
@@ -19,28 +16,17 @@ func ActiveNavbarMenu()  {
 	})
 }
 
-
-
-func ActiveModalSignIn()  {
-	jquery.NewJQuery("#sign-in").On(jquery.CLICK, func(e jquery.Event) {
-
-		jquery.NewJQuery(e.CurrentTarget).ToggleClass("is-active")
-		jquery.NewJQuery("#modal-sign-in").ToggleClass("is-active")
-	})
+func SignUp()  {
+	ActiveModalSignUp()
+	CloseModalSignUp()
+	HandleSignUp()
 }
 
-func CloseModalSignUp()  {
-	jquery.NewJQuery("#close-sign-up").On(jquery.CLICK, func(e jquery.Event) {
-		//jquery.NewJQuery(e.CurrentTarget).ToggleClass("is-active")
-		jquery.NewJQuery("#modal-sign-up").ToggleClass("is-active")
-	})
+func SignIn()  {
+	ActiveModalSignIn()
+	CloseModalSignIn()
+	HandleSignIn()
 }
 
-func CloseModalSignIn()  {
-	jquery.NewJQuery("#close-sign-in").On(jquery.CLICK, func(e jquery.Event) {
-		//jquery.NewJQuery(e.CurrentTarget).ToggleClass("is-active")
-		jquery.NewJQuery("#modal-sign-in").ToggleClass("is-active")
-	})
-}
 
 

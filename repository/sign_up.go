@@ -10,7 +10,6 @@ type UserRepository struct {
 	User *models.User
 }
 
-
 func (self *UserRepository) IsAlreadyAccount(db *pg.DB) bool {
 	var u models.User
 	err := db.Model(&u).Where("email=?", self.User.Email).Select()
@@ -29,6 +28,7 @@ func (self *UserRepository) SignUpAccount(db *pg.DB) {
 		Email:    self.User.Email,
 		Password: self.User.Password,
 		Fullname: self.User.Fullname,
+		Type:     1,
 	}
 	err := db.Insert(&u)
 	if err != nil {

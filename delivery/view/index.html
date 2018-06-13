@@ -46,63 +46,65 @@
                     <div class="is-size-6 box">
                         Your blance:
                     </div>
-                    <div class="box">
-                        <table class="table is-fullwidth">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="is-size-6">
-                                        Amount:
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input is-primary is-small" type="text">
+                    <form method="post" id="form-order-buy">
+                        <div class="box">
+                            <table class="table is-fullwidth">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="is-size-6">
+                                            Amount:
                                         </div>
-                                    </div>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="is-size-6">
-                                        Price:
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input is-primary is-small" type="text">
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input is-primary is-small" id="amount-buy" type="text">
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="is-size-6">
-                                        Total:
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="box">
-                        <div class="is-size-6">
-                            Click to sum your order.
-                        </div>
-                        <br>
-                        <div class="columns">
-                            <div class="column">
-                                <a class="button is-rounded" style="width:115px">Caculate</a>
-                            </div>
-                            <div class="column">
-                                <a class="button is-rounded" style="width:115px">Buy</a>
-                            </div>
-                        </div>
+                                    </td>
 
-                    </div>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="is-size-6">
+                                            Price:
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input is-primary is-small" id="price-buy" type="text">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="is-size-6">
+                                            Total:
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="box">
+                            <div class="is-size-6">
+                                Click to sum your order.
+                            </div>
+                            <br>
+                            <div class="columns">
+                                <div class="column">
+                                    <a class="button is-rounded" style="width:115px">Caculate</a>
+                                </div>
+                                <div class="column">
+                                    <a class="button is-rounded" id="order-buy" style="width:115px">Buy</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="column">
@@ -228,7 +230,7 @@
         </header>
         <section class="modal-card-body">
             <form method="post" id="form-sign-up">
-                <div  id="not-match-pass" class="notification is-danger">
+                <div id="not-match-pass" class="notification is-danger">
                     <p>Password does not match the confirm password.</p>
                 </div>
 
@@ -251,7 +253,7 @@
                 </div>
 
                 <div class="field">
-                    <label for="password" class="label">Pasword</label>
+                    <label for="password" class="label">Password</label>
                     <div class="control has-icons-left">
                                 <span class="icon">
                                     <i class="fa fa-lock"></i>
@@ -295,29 +297,34 @@
             <button class="delete" id="close-sign-in" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-            <div class="field">
-                <label for="email" class="label">Email</label>
-                <div class="control has-icons-left">
+            <form method="post" id="form-sign-in">
+                <div id="email-password-incorrect" class="notification is-danger">
+                    <p>Email or password is incorrect.</p>
+                </div>
+                <div class="field">
+                    <label for="email" class="label">Email</label>
+                    <div class="control has-icons-left">
                                 <span class="icon">
                                     <i class="fa fa-user"></i>
                                 </span>
-                    <input type="email" class="input" id="email" name="email" required>
+                        <input type="email" class="input" id="email-sign-in" name="email" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="field">
-                <label for="password" class="label">Pasword</label>
-                <div class="control has-icons-left">
+                <div class="field">
+                    <label for="password" class="label">Password</label>
+                    <div class="control has-icons-left">
                                 <span class="icon">
                                     <i class="fa fa-lock"></i>
                                 </span>
-                    <input type="password" class="input" id="password" name="password" required>
+                        <input type="password" class="input" id="password-sign-in" name="password" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="field">
-                <button type="submit" class="button is-fullwidth is-primary">Sign In</button>
-            </div>
+                <div class="field">
+                    <button type="submit" class="button is-fullwidth is-primary">Sign In</button>
+                </div>
+            </form>
         </section>
     </div>
 </div>
