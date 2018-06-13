@@ -11,3 +11,4 @@ func SelectUser(db *pg.DB, userID uuid.UUID) *models.User {
 	db.Select(u)
 	return u
 }
+

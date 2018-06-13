@@ -10,14 +10,14 @@ type UserRepository struct {
 	User *models.User
 }
 
-func (self *UserRepository) IsAlreadyAccount(db *pg.DB) bool {
+func (self *UserRepository) IsAlreadyAccount(db *pg.DB) (check bool, user *models.User) {
 	var u models.User
 	err := db.Model(&u).Where("email=?", self.User.Email).Select()
 	//println(u.Email)
 	if err != nil {
-		return false
+		return false, &u
 	}
-	return true
+	return true, &u
 }
 
 func (self *UserRepository) SignUpAccount(db *pg.DB) {

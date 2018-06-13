@@ -6,7 +6,7 @@ func main() {
 	ActiveNavbarMenu()
 	SignUp()
 	SignIn()
-	HanldeOrderBuy()
+	HandleOrderBuy()
 }
 
 func ActiveNavbarMenu()  {
