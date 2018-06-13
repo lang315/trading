@@ -55,12 +55,17 @@ func main() {
 			return err
 		}
 		println(u.Password)
+		passHashing, _ := usecase.HashPassword(u.Password)
+		println(passHashing)
+		u.Password = passHashing
 		var user repository.UserRepository
 		user.User = u
-		if user.IsAlreadyAccount(db) {
+		check, _ := user.IsAlreadyAccount(db)
+		if check {
 			resStr := map[string]interface{}{
 				"Success": "false",
 				"Status":  "Email is already in use",
+				"Fullname": u.Fullname,
 			}
 			return context.JSON(200, resStr)
 		}
@@ -83,23 +88,37 @@ func main() {
 
 		var user repository.UserRepository
 		user.User = u
+		checkEmail, userLogin := user.IsAlreadyAccount(db)
+		hash,_:= usecase.HashPassword(userLogin.Password)
+		checkPass:= usecase.CheckPasswordHash(userLogin.Password, hash)
 
-		if !user.IsAlreadyAccount(db) {
+		if !checkEmail || !checkPass {
 			res := map[string]interface{}{
 				"Success": false,
 			}
 			return context.JSON(200, res)
 		}
+
 		usecase.SetSession(context, u)
+
 		res := map[string]interface{}{
 			"Success": true,
+			"Fullname": userLogin.Fullname,
 		}
 		return context.JSON(200, res)
 	})
 
 	app.POST("/order", func(context echo.Context) error {
 		sess, _ := session.Get("session", context)
-		uuidStr := fmt.Sprint(sess.Values["ID"])
+		uuidStr := fmt.Sprintln(sess.Values["ID"])
+		println(uuidStr)
+		if uuidStr == "<nil>" {
+			println("Err")
+			res := map[string]interface{}{
+				"Success": false,
+			}
+			return context.JSON(200, res)
+		}
 		id, _ := uuid.FromString(uuidStr)
 
 		order := &models.Order{}
@@ -110,20 +129,21 @@ func main() {
 
 		balance := repository.SelectBalance(db, id)
 		if order.Type == 0 {
-			order.OriginQty = balance.USD
+			order.OriginQuantity = balance.USD
 		} else {
-			order.OriginQty = balance.EUR
+			order.OriginQuantity = balance.EUR
 		}
 
-		if order.ExecutedQty > order.OriginQty {
+		if order.ExecutedQuantity > order.ExecutedQuantity {
 			res := map[string]interface{}{
 				"Success": false,
 			}
 			return context.JSON(200, res)
 		}
+		order.UserID = id
 		order.Time = time.Now()
 		order.IsWorking = true
-		order.UserID = id
+		repository.InsertOrder(db, order)
 		return context.JSON(200, id)
 	})
 
