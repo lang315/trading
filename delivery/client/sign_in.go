@@ -26,7 +26,10 @@ func HandleSignIn() {
 	jquery.NewJQuery("#form-sign-in").On(jquery.SUBMIT, func(e jquery.Event) {
 		e.PreventDefault()
 		email:=jquery.NewJQuery("#email").Val()
+
 		password := jquery.NewJQuery("#password").Val()
+		println(email)
+		println(password)
 
 		posting := jquery.Post("/sign-in", js.M{
 			"email":    email,

@@ -14,6 +14,6 @@ func SetSession(c echo.Context, user *models.User) {
 		MaxAge:   86400 * 7,
 		HttpOnly: true,
 	}
-	sess.Values["ID"] = user.ID
+	sess.Values["ID"] = user.Email
 	sess.Save(c.Request(), c.Response())
 }

@@ -44,7 +44,7 @@
                 <div class="notification is-size-5 is-light">
                     <p class="title is-size-5 has-text-centered">BUY</p>
                     <div class="is-size-6 box">
-                        Your blance:
+                        Your balance:
                     </div>
                     <form method="post" id="form-order-buy">
                         <div class="box">
@@ -111,65 +111,67 @@
                 <div class="notification is-size-5 is-light">
                     <p class="title is-size-5 has-text-centered">SELL</p>
                     <div class="is-size-6 box">
-                        Your blance:
+                        Your balance:
                     </div>
-                    <div class="box">
-                        <table class="table is-fullwidth">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="is-size-6">
-                                        Amount:
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input is-primary is-small" type="text">
+                    <form method="post" id="form-order-sell">
+                        <div class="box">
+                            <table class="table is-fullwidth">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="is-size-6">
+                                            Amount:
                                         </div>
-                                    </div>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="is-size-6">
-                                        Price:
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input is-primary is-small" type="text">
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input is-primary is-small" id="amount-sell" type="text">
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="is-size-6">
-                                        Total:
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="box">
-                        <div class="is-size-6">
-                            Click to sum your order.
-                        </div>
-                        <br>
-                        <div class="columns">
-                            <div class="column">
-                                <a class="button is-rounded" style="width:115px">Caculate</a>
-                            </div>
-                            <div class="column">
-                                <a class="button is-rounded" type="submit" style="width:115px">Sell</a>
-                            </div>
-                        </div>
+                                    </td>
 
-                    </div>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="is-size-6">
+                                            Price:
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input is-primary is-small" id="price-sell" type="text">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="is-size-6">
+                                            Total:
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="box">
+                            <div class="is-size-6">
+                                Click to sum your order.
+                            </div>
+                            <br>
+                            <div class="columns">
+                                <div class="column">
+                                    <a class="button is-rounded" style="width:115px">Caculate</a>
+                                </div>
+                                <div class="column">
+                                    <button type="submit" class="button is-rounded" style="width:115px">Sell</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -185,12 +187,14 @@
                             <thead>
                             <tr>
                                 <th class="has-text-centered">Price</th>
-                                <th class="has-text-centered">BTC</th>
+                                <th class="has-text-centered">EUR</th>
                                 <th class="has-text-centered">USD</th>
                             </tr>
                             </thead>
                             <tbody>
-
+                            <tr id="table-order-sell">
+                                <th id="price-order-sell"></th>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

@@ -25,10 +25,10 @@ func HandleSignUp() {
 		})
 
 		posting.Done(func(data *js.Object) {
-			if !data.Get("Success").Bool(){
+			if data.Get("Success").String() == "false"{
 				handlePostingErr(data)
 			} else {
-				jquery.NewJQuery("#modal-sign-up").ToggleClass("is-active")
+				//jquery.NewJQuery("#modal-sign-up").ToggleClass("is-active")
 			}
 		})
 
