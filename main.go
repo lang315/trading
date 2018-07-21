@@ -110,15 +110,16 @@ func main() {
 
 	app.POST("/order", func(context echo.Context) error {
 		sess, _ := session.Get("session", context)
-		uuidStr := fmt.Sprintln(sess.Values["ID"])
-		println(uuidStr)
-		if uuidStr == "<nil>" {
+
+		if sess.Values["ID"] == nil {
 			println("Err")
 			res := map[string]interface{}{
 				"Success": false,
 			}
 			return context.JSON(200, res)
 		}
+
+		uuidStr := fmt.Sprintln(sess.Values["ID"])
 		id, _ := uuid.FromString(uuidStr)
 
 		order := &models.Order{}
@@ -144,7 +145,13 @@ func main() {
 		order.Time = time.Now()
 		order.IsWorking = true
 		repository.InsertOrder(db, order)
-		return context.JSON(200, id)
+		repository.UpdateBalance(db, balance)
+		res := map[string]interface{}{
+			"Success": true,
+			"Order": order,
+			"Balance": balance,
+		}
+		return context.JSON(200, res)
 	})
 
 	app.Start(":8000")

@@ -6,7 +6,7 @@ import (
 )
 
 func InsertOrder(db *pg.DB, order *models.Order) {
-	err := db.Insert(order)
+	_,err := db.Model(&order).Insert()
 	if err!=nil {
 		println("Err insert order: " + err.Error())
 	}
